@@ -1,60 +1,58 @@
-<?php include('include/application-top.php'); 
-	if((isset($_POST['submit'])) AND ($_POST['submit']=='Sign Up'))
-	{
-	
-	
-	  if(!empty($_FILES['image']))
-	  {
-		$path = "uploads/company/";
-		$path = $path . basename( $_FILES['image']['name']);
-		$imagename = basename( $_FILES['image']['name']);
-		
-		  @$file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
-		  $extensions= array("jpeg","jpg","png");
-		  
-		  if(in_array($file_ext,$extensions)=== false){
-			$MSG='Not allowed extension,please upload jpg,jpeg,gif,png images only!';
-		  }else{
-			if(move_uploaded_file($_FILES['image']['tmp_name'], $path)) {	
-	
-					$sql = "INSERT INTO 
-							`tbl_company` 
-							(`name`,`email`,`password`,`imagename`,`company_name`,`company_logo`,`industry`,`land_line_no`,`website`,`description`,`organization_type`,`cell_phone`,`no_of_employee`,`country`,`city`,`full_address`) 
-							VALUES ('".mysqli_real_escape_string($connt,$_POST['name'])."', 
-									'".mysqli_real_escape_string($connt,$_POST['email'])."', 
-									'".mysqli_real_escape_string($connt,$_POST['password'])."',
-									'".mysqli_real_escape_string($connt,$imagename)."',
-									'".mysqli_real_escape_string($connt,$_POST['company_name'])."', 
-									'".mysqli_real_escape_string($connt,$_POST['company_logo'])."',
-									'".mysqli_real_escape_string($connt,$_POST['industry'])."',
-									'".mysqli_real_escape_string($connt,$_POST['land_line_no'])."',
-									'".mysqli_real_escape_string($connt,$_POST['website'])."',
-									'".mysqli_real_escape_string($connt,$_POST['description'])."',
-									'".mysqli_real_escape_string($connt,$_POST['organization_type'])."',
-									'".mysqli_real_escape_string($connt,$_POST['cell_phone'])."',
-									'".mysqli_real_escape_string($connt,$_POST['no_of_employee'])."',
-									'".mysqli_real_escape_string($connt,$_POST['country'])."',
-									'".mysqli_real_escape_string($connt,$_POST['city'])."',
-									'".mysqli_real_escape_string($connt,$_POST['full_address'])."'
-									)";
-					
-					if (mysqli_query($connt, $sql)) {
-						$lid=mysqli_insert_id($connt);
-						
-						$_SESSION['company_login']=1;
-						$_SESSION['company_id']=$lid;			
-						header("Location:company-dashboard-manage-jobs.php?op=a");
-					} else {
-						echo "Error: " . $sql . "<br>" . mysqli_error($connt);
-					}
-		
-			}
-		
-		
-		}
-	}
+<?php
+include('include/application-top.php');
+
+if (isset($_POST['submit']) && $_POST['submit'] == 'Sign Up') {
+    if (!empty($_FILES['image'])) {
+        $path = "uploads/company/";
+        $imagename = basename($_FILES['image']['name']);
+
+        $file_ext = strtolower(pathinfo($imagename, PATHINFO_EXTENSION));
+        $allowed_extensions = array("jpeg", "jpg", "png");
+
+        if (!in_array($file_ext, $allowed_extensions)) {
+            $MSG = 'Not allowed extension, please upload jpg, jpeg, gif, png images only!';
+        } else {
+            $path = $path . $imagename;
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
+                $sql = "INSERT INTO `tbl_company` 
+                        (`name`, `email`, `password`, `imagename`, `company_name`, `company_logo`, `industry`, `land_line_no`, `website`, `description`, `organization_type`, `cell_phone`, `no_of_employee`, `country`, `city`, `full_address`) 
+                        VALUES (
+                            '" . mysqli_real_escape_string($connt, $_POST['name']) . "', 
+                            '" . mysqli_real_escape_string($connt, $_POST['email']) . "', 
+                            '" . mysqli_real_escape_string($connt, $_POST['password']) . "',
+                            '" . mysqli_real_escape_string($connt, $imagename) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['company_name']) . "',
+                            '" . mysqli_real_escape_string($connt, $path) . "', 
+                            '" . mysqli_real_escape_string($connt, $_POST['industry']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['land_line_no']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['website']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['description']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['organization_type']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['cell_phone']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['no_of_employee']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['country']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['city']) . "',
+                            '" . mysqli_real_escape_string($connt, $_POST['full_address']) . "'
+                        )";
+
+                if (mysqli_query($connt, $sql)) {
+                    $lid = mysqli_insert_id($connt);
+
+                    $_SESSION['company_login'] = 1;
+                    $_SESSION['company_id'] = $lid;
+                    header("Location: company-dashboard-manage-jobs.php?op=a");
+                    exit;
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($connt);
+                }
+            }
+        }
+    }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <!DOCTYPE html>
 <html lang="en">
 

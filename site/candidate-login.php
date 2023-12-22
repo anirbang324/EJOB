@@ -48,7 +48,7 @@ if((isset($_POST['submit'])) AND ($_POST['submit']=='Sign In'))	{
     <title>Employer Detail</title>
     
     <!-- Css -->
-    <link href="<?php echo SITE_URL; ?>css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo SITE_URL; ?>CSS/bootstrap.css" rel="stylesheet">
     <link href="<?php echo SITE_URL; ?>css/font-awesome.css" rel="stylesheet">
     <link href="<?php echo SITE_URL; ?>css/flaticon.css" rel="stylesheet">
     <link href="<?php echo SITE_URL; ?>fonts/next-icon/flat-icon.css" rel="stylesheet">

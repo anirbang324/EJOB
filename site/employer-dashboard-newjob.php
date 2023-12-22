@@ -1,36 +1,36 @@
-<?php include('include/application-top.php');
+<?php
+include('include/application-top.php');
 CheckCompanyLogin();
-	if((isset($_POST['submit'])) AND ($_POST['submit']=='Submit'))
-	{
-		$sql = "INSERT INTO 
-				`tbl_post_jobs` 
-				(`company_id`,`job_title`,`last_date`,`job_description`,`vacancies`,`industry_id`,`job_mode`,`pay`,`experience`,`qualification`,`required_skills`,`contact_person`,`contact_email`,`contact_phone`,`country`,`city`) 
-				VALUES ('".$_SESSION['company_id']."', 
-						'".$_POST['job_title']."', 
-						'".$_POST['last_date']."',
-						'".$_POST['job_description']."', 
-						'".$_POST['vacancies']."',
-						'".$_POST['industry_id']."',
-						'".$_POST['job_mode']."',
-						'".$_POST['pay']."',
-						'".$_POST['experience']."',
-						'".$_POST['qualification']."',
-						'".$_POST['required_skills']."',
-						'".$_POST['contact_person']."',
-						'".$_POST['contact_email']."',
-						'".$_POST['contact_phone']."',
-						'".$_POST['country']."',
-						'".$_POST['city']."'
-						)";
-		
-		if (mysqli_query($connt, $sql)) {
-			$lid=mysqli_insert_id($connt);
-						
-			header("Location:company-dashboard-manage-jobs.php?op=a");
-		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($connt);
-		}	
-	}
+
+if ((isset($_POST['submit'])) && ($_POST['submit'] == 'Submit')) {
+    $sql = "INSERT INTO 
+            `tbl_post_jobs` 
+            (`company_id`,`job_title`,`last_date`,`job_description`,`vacancies`,`industry_id`,`job_mode`,`pay`,`experience`,`qualification`,`required_skills`,`contact_person`,`contact_email`,`contact_phone`,`country`,`city`, `status`) 
+            VALUES ('".$_SESSION['company_id']."', 
+                    '".$_POST['job_title']."', 
+                    '".$_POST['last_date']."',
+                    '".$_POST['job_description']."', 
+                    '".$_POST['vacancies']."',
+                    '".$_POST['industry_id']."',
+                    '".$_POST['job_mode']."',
+                    '".$_POST['pay']."',
+                    '".$_POST['experience']."',
+                    '".$_POST['qualification']."',
+                    '".$_POST['required_skills']."',
+                    '".$_POST['contact_person']."',
+                    '".$_POST['contact_email']."',
+                    '".$_POST['contact_phone']."',
+                    '".$_POST['country']."',
+                    '".$_POST['city']."',
+                    '1')"; // Assuming '1' is the default status
+
+    if (mysqli_query($connt, $sql)) {
+        $lid = mysqli_insert_id($connt);
+        header("Location:company-dashboard-manage-jobs.php?op=a");
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($connt);
+    }
+}
 
 ?>
 <!DOCTYPE html>
