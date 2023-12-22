@@ -54,7 +54,6 @@ if(isset($_POST['submit']))
 <html lang="en">
 
 
-<!-- Mirrored from combinedgroupltd.com/job/new_job/candidate-dashboard-changed-password.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Feb 2019 12:45:57 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

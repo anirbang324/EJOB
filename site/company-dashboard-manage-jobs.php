@@ -5,7 +5,6 @@ CheckCompanyLogin();
 <html lang="en">
 
 
-<!-- Mirrored from combinedgroupltd.com/job/new_job/employer-dashboard-manage-jobs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Feb 2019 12:46:20 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -201,7 +200,4 @@ CheckCompanyLogin();
     <script src="<?php echo SITE_URL; ?>plugin-script/functions.js"></script>
     <script src="<?php echo SITE_URL; ?>script/functions.js"></script>
 </body>
-
-
-<!-- Mirrored from combinedgroupltd.com/job/new_job/employer-dashboard-manage-jobs.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Feb 2019 12:46:20 GMT -->
 </html>
